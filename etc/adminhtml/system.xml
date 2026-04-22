@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="panth_index_now" translate="label" sortOrder="85" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>IndexNow</label>
+            <tab>panth</tab>
+            <resource>Panth_IndexNow::config</resource>
+
+            <group id="indexnow" translate="label" sortOrder="78" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>IndexNow Protocol</label>
+                <comment><![CDATA[Instantly notify Bing, Yandex, and other participating search engines when content changes. <a href="https://www.indexnow.org/" target="_blank">Learn more</a>.]]></comment>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable IndexNow</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When enabled, product, category, and CMS page saves automatically submit the changed URL to IndexNow.</comment>
+                </field>
+                <field id="api_key" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>API Key</label>
+                    <comment><![CDATA[A UUID-style key (e.g. <code>a1b2c3d4e5f6...</code>). Generate one at <a href="https://www.bing.com/indexnow" target="_blank">Bing IndexNow</a> or enter any 8+ hex character string. The key is served at <code>/seo/indexnow/key</code> for verification.]]></comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

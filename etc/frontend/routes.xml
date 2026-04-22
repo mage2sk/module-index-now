@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Register Panth_IndexNow under the existing "seo" frontName. Magento
+ * allows multiple modules to share a frontName; this lets the key
+ * controller (/seo/indexnow/key) resolve to Panth_IndexNow while
+ * Panth_AdvancedSEO continues to own its other /seo/* routes.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="panth_seo" frontName="seo">
+            <module name="Panth_IndexNow"/>
+        </route>
+    </router>
+</config>

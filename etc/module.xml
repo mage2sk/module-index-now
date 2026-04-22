@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Panth IndexNow — Module declaration.
+ *
+ * Notifies Bing, Yandex, and other IndexNow-participating search engines
+ * whenever a product, category, or CMS page is saved. Exposes the key
+ * verification endpoint at /seo/indexnow/key required by the protocol.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Module/etc/module.xsd">
+    <module name="Panth_IndexNow" setup_version="1.0.0">
+        <sequence>
+            <module name="Panth_Core"/>
+            <module name="Magento_Catalog"/>
+            <module name="Magento_Cms"/>
+        </sequence>
+    </module>
+</config>
