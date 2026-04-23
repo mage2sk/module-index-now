@@ -21,7 +21,6 @@ use Psr\Log\LoggerInterface;
  */
 class EntityChangeObserver implements ObserverInterface
 {
-    private const XML_GENERAL_ENABLED  = 'panth_seo/general/enabled';
     private const XML_INDEXNOW_ENABLED = 'panth_index_now/indexnow/enabled';
 
     /**
@@ -71,10 +70,6 @@ class EntityChangeObserver implements ObserverInterface
      */
     public function execute(Observer $observer): void
     {
-        if (!$this->isGeneralEnabled()) {
-            return;
-        }
-
         $event = $observer->getEvent();
 
         // Determine which entity was saved and its store context.
@@ -156,19 +151,6 @@ class EntityChangeObserver implements ObserverInterface
         }
 
         self::$pendingUrls = [];
-    }
-
-    /**
-     * Is the master Panth SEO feature enabled?
-     *
-     * @return bool
-     */
-    private function isGeneralEnabled(): bool
-    {
-        return $this->scopeConfig->isSetFlag(
-            self::XML_GENERAL_ENABLED,
-            ScopeInterface::SCOPE_STORE
-        );
     }
 
     /**
