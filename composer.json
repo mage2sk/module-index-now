@@ -2,7 +2,7 @@
     "name": "mage2kishan/module-index-now",
     "description": "Panth IndexNow — instantly notify Bing, Yandex and other search engines when content changes, via the IndexNow protocol.",
     "type": "magento2-module",
-    "version": "1.0.2",
+    "version": "1.0.3",
     "license": "proprietary",
     "keywords": [
         "magento2",
