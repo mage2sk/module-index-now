@@ -68,7 +68,12 @@ class Submitter
         }
 
         $host = (string) parse_url($baseUrl, PHP_URL_HOST);
-        $keyLocation = $baseUrl . '/seo/indexnow/key';
+        // Key endpoint is served by Panth\IndexNow\Controller\Key\Index under
+        // the module-owned `panth_indexnow` frontName (see
+        // etc/frontend/routes.xml). Keeping this path in sync with the
+        // controller's route is required by the IndexNow protocol — the
+        // value we declare here is what the search engine fetches.
+        $keyLocation = $baseUrl . '/panth_indexnow/key';
 
         $success = true;
         foreach (array_chunk($urls, self::MAX_BATCH_SIZE) as $batch) {

@@ -20,7 +20,7 @@
 
 > **Instantly notify Bing, Yandex, Seznam, Naver and Yep whenever a product, category, or CMS page changes** — via the open IndexNow protocol, with one plug-and-play Magento 2 module. Zero cron jobs, zero queues, zero clicking "submit URL" in Bing Webmaster Tools for every edit.
 
-**Panth IndexNow** implements the [IndexNow protocol](https://www.indexnow.org/) inside Magento 2. When a merchant saves a product, category, or CMS page in admin, the module collects the changed URL and fires a single batched POST to `api.indexnow.org` at the end of the request — covering Bing, Yandex, Seznam, Naver and Yep in one call. Serves the required key-verification endpoint at `/seo/indexnow/key`, respects Magento URL rewrites and CMS URL suffixes, supports per-store API keys, and works identically on **Hyva** and **Luma** storefronts.
+**Panth IndexNow** implements the [IndexNow protocol](https://www.indexnow.org/) inside Magento 2. When a merchant saves a product, category, or CMS page in admin, the module collects the changed URL and fires a single batched POST to `api.indexnow.org` at the end of the request — covering Bing, Yandex, Seznam, Naver and Yep in one call. Serves the required key-verification endpoint at `/panth_indexnow/key`, respects Magento URL rewrites and CMS URL suffixes, supports per-store API keys, and works identically on **Hyva** and **Luma** storefronts.
 
 ---
 
@@ -104,10 +104,10 @@ Performance • SEO • Adobe Commerce Cloud
 
 ### Built-in Key Verification Endpoint
 
-- **`/seo/indexnow/key`** — IndexNow's required verification URL, served as plain text from the admin-configured key
-- **Multiple path styles supported** — `/seo/indexnow/key`, `/seo/indexnow/key?key=<k>`, `/seo/indexnow/key/key/<k>`, `/seo/indexnow/key/<k>.txt`
-- **Timing-safe comparison** when an explicit key is supplied in the URL — mismatches return 404 so the endpoint can't be abused as an arbitrary text echo service
+- **`/panth_indexnow/key`** — IndexNow's required verification URL, served as plain text from the admin-configured key
+- **Optional `?key=<value>` query param** — lets crawlers pre-validate with timing-safe comparison; mismatches return 404 so the endpoint can't be abused as an arbitrary text echo service
 - **Auto-404 when disabled** — if the feature flag is off or the key is empty, the endpoint returns a clean 404
+- **Module-owned frontName** — uses `panth_indexnow` as its route's frontName so the module never shares a route registration with other modules (no controller resolution races)
 
 ### Safe Defaults
 
@@ -161,7 +161,7 @@ IndexNow has a defined list of participating search engines. Submission via `api
 
 ### Admin Configuration — Stores → Configuration → Panth Extensions → IndexNow
 
-![Panth IndexNow admin configuration screen — Enable IndexNow, API Key, Bing IndexNow link, key served at /seo/indexnow/key](docs/screenshots/admin-config.png)
+![Panth IndexNow admin configuration screen — Enable IndexNow, API Key, Bing IndexNow link, key served at /panth_indexnow/key](docs/screenshots/admin-config.png)
 
 *Two settings, both at store-view scope: the master enable toggle and the API key. The inline comments link directly to Bing's IndexNow key generator and remind the merchant where the verification file is served.*
 
@@ -226,7 +226,7 @@ Navigate to **Admin → Stores → Configuration → Panth Extensions → IndexN
 | Setting | Default | Scope | Description |
 |---|---|---|---|
 | Enable IndexNow | No | Store View | Master toggle. When on, product / category / CMS page saves submit the changed URL to IndexNow. |
-| API Key | (empty) | Store View | A UUID-style key (e.g. `a1b2c3d4e5f6…`). The key is served at `/seo/indexnow/key` for verification. Must be at least 8 hex characters. |
+| API Key | (empty) | Store View | A UUID-style key (e.g. `a1b2c3d4e5f6…`). The key is served at `/panth_indexnow/key` for verification. Must be at least 8 hex characters. |
 
 Both settings are scope-aware — configure one key globally or set different keys per store view if you manage multiple brand domains from one Magento install.
 
@@ -294,21 +294,20 @@ The module is deliberately small (three classes — an observer, a submitter, an
 IndexNow requires the domain being submitted to serve the API key as a plain-text file at a declared URL. The module serves this automatically at:
 
 ```
-https://yourstore.com/seo/indexnow/key
+https://yourstore.com/panth_indexnow/key
 ```
 
-**Multiple path styles are accepted** so the endpoint works with whichever convention Bing's crawler uses:
+Accepted URL forms:
 
 | URL | Behavior |
 |---|---|
-| `/seo/indexnow/key` | Returns the configured key as `text/plain` |
-| `/seo/indexnow/key?key=<correct>` | Returns the key (key must match configured) |
-| `/seo/indexnow/key?key=<wrong>` | Returns 404 (prevents use as arbitrary text echo) |
-| `/seo/indexnow/key/key/<correct>` | Returns the key |
-| `/seo/indexnow/key/<correct>.txt` | Returns the key (trailing `.txt` accepted) |
-| `/seo/indexnow/key` when disabled | Returns 404 |
+| `/panth_indexnow/key` | Returns the configured key as `text/plain` (HTTP 200) |
+| `/panth_indexnow/key?key=<correct>` | Returns the key when the query matches (timing-safe compare) |
+| `/panth_indexnow/key?key=<wrong>` | Returns 404 (prevents use as arbitrary text echo service) |
+| `/panth_indexnow/key` when IndexNow disabled | Returns 404 |
+| `/panth_indexnow/key` when API key empty | Returns 404 |
 
-The key comparison is **timing-safe** via `hash_equals` — the endpoint resists timing-attack key discovery even when an explicit key is supplied.
+The key comparison is **timing-safe** via `hash_equals` — the endpoint resists timing-attack key discovery.
 
 ---
 
@@ -323,8 +322,8 @@ The module is fully scope-aware:
 Each submission uses the correct key + host + keyLocation for the store the entity belongs to. Saving a product assigned to Store A and a CMS page assigned to Store B in one admin action triggers **two** POSTs — one per store — each with that store's own key.
 
 ```
-Hyva store  → POST {host: hyva.test,  key: hyva-key-...,  keyLocation: https://hyva.test/seo/indexnow/key}
-Luma store  → POST {host: luma.test,  key: luma-key-...,  keyLocation: https://luma.test/seo/indexnow/key}
+Hyva store  → POST {host: hyva.test,  key: hyva-key-...,  keyLocation: https://hyva.test/panth_indexnow/key}
+Luma store  → POST {host: luma.test,  key: luma-key-...,  keyLocation: https://luma.test/panth_indexnow/key}
 ```
 
 ---
@@ -334,9 +333,9 @@ Luma store  → POST {host: luma.test,  key: luma-key-...,  keyLocation: https:/
 | Issue | Cause | Resolution |
 |---|---|---|
 | Nothing gets submitted after saving | Module not enabled at store scope | Enable in admin at the specific store view (not just default) |
-| `/seo/indexnow/key` returns 404 | Feature disabled or key empty | Enable + set API key + flush cache |
+| `/panth_indexnow/key` returns 404 | Feature disabled or key empty | Enable + set API key + flush cache |
 | IndexNow API returns 422 | Your site's host isn't publicly reachable | Expected on dev/staging (`.test`, `.local`). Will work on production domains. |
-| IndexNow API returns 403 | Key file doesn't match submitted key | Verify `/seo/indexnow/key` returns the same value as the admin API Key field |
+| IndexNow API returns 403 | Key file doesn't match submitted key | Verify `/panth_indexnow/key` returns the same value as the admin API Key field |
 | Submissions happen but search results don't update | Google doesn't honor IndexNow | Use XML sitemap + Search Console for Google. IndexNow covers Bing / Yandex only. |
 | Batch size > 10,000 URLs | Observer batches in chunks of 10K automatically | No action needed — the spec maximum is handled by `array_chunk` |
 | Admin role doesn't see the config section | ACL resource not granted | System → Permissions → User Roles → edit the role → grant Panth Extensions → IndexNow |
@@ -356,7 +355,7 @@ No — that's the point of IndexNow. One key, submitted to `api.indexnow.org`, f
 
 ### Where is the key file served?
 
-`https://yourstore.com/seo/indexnow/key` — IndexNow crawlers hit this URL to verify domain ownership before trusting submitted URLs.
+`https://yourstore.com/panth_indexnow/key` — IndexNow crawlers hit this URL to verify domain ownership before trusting submitted URLs.
 
 ### What happens if the IndexNow API is down?
 

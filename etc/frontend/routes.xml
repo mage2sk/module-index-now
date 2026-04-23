@@ -1,16 +1,26 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Register Panth_IndexNow under the existing "seo" frontName. Magento
- * allows multiple modules to share a frontName; this lets the key
- * controller (/seo/indexnow/key) resolve to Panth_IndexNow while
- * Panth_AdvancedSEO continues to own its other /seo/* routes.
+ * Panth_IndexNow — frontend route.
+ *
+ * Owns its own frontName `panth_indexnow` so the module never shares a
+ * route registration with another module. Sharing a frontName works in
+ * Magento (the router merges modules under the same <route id>) but
+ * creates coupling — controller resolution order under a shared route
+ * depends on module sort order, which is fragile for a plug-and-play
+ * extension. Using a unique frontName keeps the module self-contained.
+ *
+ * The key verification endpoint is served at
+ *   https://yourstore.com/panth_indexnow/key
+ * Submitter::submit builds the `keyLocation` payload field to match, so
+ * Bing, Yandex, Seznam, Naver and Yep always see the correct URL with
+ * no extra step from the merchant.
  */
 -->
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
     <router id="standard">
-        <route id="panth_seo" frontName="seo">
+        <route id="panth_indexnow" frontName="panth_indexnow">
             <module name="Panth_IndexNow"/>
         </route>
     </router>

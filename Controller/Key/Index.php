@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Panth\IndexNow\Controller\IndexNow;
+namespace Panth\IndexNow\Controller\Key;
 
 use Magento\Framework\App\Action\HttpGetActionInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
@@ -15,22 +15,23 @@ use Magento\Store\Model\StoreManagerInterface;
 /**
  * Frontend controller for IndexNow key verification.
  *
- * Route: GET /seo/indexnow/key
- *        GET /seo/indexnow/key?key={api_key}
- *        GET /seo/indexnow/key/key/{api_key}
+ * Route: GET /panth_indexnow/key
+ *        GET /panth_indexnow/key?key={api_key}
  *
- * IndexNow protocol requires the declared keyLocation URL to serve the API
- * key as a plain-text response. The IndexNow Submitter declares keyLocation
- * as "{baseUrl}/seo/indexnow/key" (see Panth\IndexNow\Model\IndexNow\
- * Submitter::submit) so this controller MUST continue to answer that URL
- * and return the configured API key verbatim.
+ * IndexNow protocol requires the declared keyLocation URL to serve the
+ * API key as a plain-text response. The Submitter declares keyLocation
+ * as "{baseUrl}/panth_indexnow/key" (see
+ * Panth\IndexNow\Model\IndexNow\Submitter::submit) so this controller
+ * MUST continue to answer that URL and return the configured API key
+ * verbatim — Bing, Yandex, Seznam, Naver and Yep fetch it to prove
+ * domain ownership.
  *
- * When an explicit "key" parameter is supplied (via query string, URL
- * key/value segments, or a trailing ".txt" extension) it must match the
- * configured key exactly, otherwise the request is rejected with 404 so
- * that this endpoint cannot be used as an arbitrary text echo service.
+ * When an explicit "key" parameter is supplied on the query string it
+ * must match the configured key exactly (case-insensitive, timing-safe)
+ * — mismatches return 404 so the endpoint cannot be used as an
+ * arbitrary text echo service.
  */
-class Key implements HttpGetActionInterface
+class Index implements HttpGetActionInterface
 {
     private const XML_INDEXNOW_ENABLED = 'panth_index_now/indexnow/enabled';
     private const XML_INDEXNOW_API_KEY = 'panth_index_now/indexnow/api_key';
@@ -116,10 +117,8 @@ class Key implements HttpGetActionInterface
     }
 
     /**
-     * Extracts an optionally-supplied key from the request. Accepts:
-     *   - ?key=abc
-     *   - /seo/indexnow/key/key/abc
-     *   - /seo/indexnow/key/abc.txt   (trailing path segment, .txt optional)
+     * Extract an optionally-supplied key from the request query string.
+     * Accepts ?key=abc with a trailing `.txt` stripped if present.
      *
      * Returns null when no key was supplied by the caller.
      *
@@ -128,26 +127,9 @@ class Key implements HttpGetActionInterface
     private function extractRequestedKey(): ?string
     {
         $key = (string) $this->request->getParam('key', '');
-        if ($key !== '') {
-            return $this->stripTxt($key);
+        if ($key === '') {
+            return null;
         }
-
-        $path = (string) $this->request->getPathInfo();
-        if (preg_match('#/seo/indexnow/key/([A-Za-z0-9._-]+)#', $path, $m) === 1) {
-            return $this->stripTxt($m[1]);
-        }
-
-        return null;
-    }
-
-    /**
-     * Strip a trailing ".txt" extension from a key value, if present.
-     *
-     * @param string $value
-     * @return string
-     */
-    private function stripTxt(string $value): string
-    {
-        return preg_replace('/\.txt$/i', '', $value) ?? $value;
+        return (string) preg_replace('/\.txt$/i', '', $key);
     }
 }
