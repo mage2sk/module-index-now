@@ -5,10 +5,12 @@ namespace Panth\IndexNow\Observer\IndexNow;
 
 use Magento\Catalog\Model\Category;
 use Magento\Catalog\Model\Product;
+use Magento\Cms\Helper\Page as CmsPageHelper;
 use Magento\Cms\Model\Page;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\Event\Observer;
 use Magento\Framework\Event\ObserverInterface;
+use Magento\Store\Model\App\Emulation as AppEmulation;
 use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Panth\IndexNow\Model\IndexNow\Submitter;
@@ -55,7 +57,9 @@ class EntityChangeObserver implements ObserverInterface
         private readonly ScopeConfigInterface $scopeConfig,
         private readonly Submitter $submitter,
         private readonly StoreManagerInterface $storeManager,
-        private readonly LoggerInterface $logger
+        private readonly LoggerInterface $logger,
+        private readonly CmsPageHelper $cmsPageHelper,
+        private readonly AppEmulation $appEmulation
     ) {
         // Keep static references so the shutdown function can flush.
         self::$submitterRef = $this->submitter;
@@ -186,7 +190,14 @@ class EntityChangeObserver implements ObserverInterface
     }
 
     /**
-     * Build the CMS page URL from its identifier and the store base URL.
+     * Resolve the canonical CMS page URL for the target store.
+     *
+     * Uses {@see CmsPageHelper::getPageUrl} inside a store emulation so
+     * Magento's URL rewrites, the store's base URL, any configured URL
+     * suffix and the store-specific default-home-page override all apply.
+     * Falling back to {@code baseUrl + '/' + identifier} was producing
+     * URLs that don't actually resolve on installs with custom CMS
+     * rewrites — IndexNow then rejects the whole batch.
      *
      * @param Page $page
      * @param int  $storeId
@@ -194,12 +205,42 @@ class EntityChangeObserver implements ObserverInterface
      */
     private function getCmsPageUrl(Page $page, int $storeId): string
     {
+        $pageId = (int) $page->getId();
+        if ($pageId <= 0) {
+            return '';
+        }
+
         try {
+            $this->appEmulation->startEnvironmentEmulation(
+                $storeId,
+                \Magento\Framework\App\Area::AREA_FRONTEND,
+                true
+            );
+            try {
+                $url = (string) $this->cmsPageHelper->getPageUrl($pageId);
+            } finally {
+                $this->appEmulation->stopEnvironmentEmulation();
+            }
+
+            if ($url !== '') {
+                return $url;
+            }
+
+            // Helper returns '' when the page is inactive / store-scoped out —
+            // build a best-effort URL from the base + identifier so we at
+            // least try rather than dropping the submission silently.
             $store      = $this->storeManager->getStore($storeId);
             $baseUrl    = rtrim((string) $store->getBaseUrl(), '/');
-            $identifier = $page->getIdentifier();
-            return $baseUrl . '/' . ltrim($identifier, '/');
-        } catch (\Throwable) {
+            $identifier = (string) $page->getIdentifier();
+            return $identifier !== ''
+                ? $baseUrl . '/' . ltrim($identifier, '/')
+                : '';
+        } catch (\Throwable $e) {
+            $this->logger->warning('Panth IndexNow: CMS URL resolve failed.', [
+                'error'   => $e->getMessage(),
+                'pageId'  => $pageId,
+                'storeId' => $storeId,
+            ]);
             return '';
         }
     }

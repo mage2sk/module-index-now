@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Panth_IndexNow — ACL resource declaration.
+ *
+ * Declares Panth_IndexNow::config as a child of Panth_Core::panth_extensions
+ * so the admin User Roles permission tree can surface it, and so the
+ * <resource>Panth_IndexNow::config</resource> reference in system.xml
+ * actually resolves to a real permission node instead of a phantom one.
+ *
+ * Without this file, Magento accepts the system.xml reference but never
+ * registers the resource — permissions granted to it via User Roles
+ * silently have no effect because there's no node to match against.
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Panth_Core::panth_extensions">
+                    <resource id="Panth_IndexNow::config"
+                              title="IndexNow"
+                              translate="title"
+                              sortOrder="85"/>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>
