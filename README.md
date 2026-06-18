@@ -1,32 +1,50 @@
 <!-- SEO Meta -->
 <!--
-  Title: Panth IndexNow - Instant Bing & Yandex Submission for Magento 2 | Panth Infotech
-  Description: Panth IndexNow auto-submits changed URLs from Magento 2 (products, categories, CMS pages) to Bing, Yandex, Seznam, Naver and Yep via the IndexNow protocol. Real-time indexing, zero-config batching, per-store API keys, Hyva and Luma compatible. Magento 2.4.4 - 2.4.8, PHP 8.1 - 8.4.
-  Keywords: magento 2 indexnow, magento 2 bing indexing, magento 2 yandex submission, magento 2 instant indexing, magento 2 seo, magento 2 bing webmaster, magento 2 url submission, magento 2 search engine ping, hyva indexnow, luma indexnow
+  Title: Magento 2 IndexNow Extension: Instant Bing, Yandex & Search Engine URL Submission | Panth Infotech
+  Description: Panth IndexNow auto-submits changed product, category, and CMS page URLs from Magento 2 to Bing, Yandex, Seznam, Naver, and Yep via the IndexNow protocol. Per-store API keys, batched submission, built-in key endpoint. Works on Magento 2.4.4 to 2.4.8 and PHP 8.1 to 8.4.
+  Keywords: magento 2 indexnow, magento 2 bing indexing, magento 2 yandex submission, magento 2 instant indexing, magento 2 seo extension, magento 2 url submission, magento 2 search engine ping, hyva indexnow, luma indexnow, magento 2 bing webmaster, magento 2 indexnow extension
   Author: Kishan Savaliya (Panth Infotech)
-  Canonical: https://github.com/mage2sk/module-index-now
+  Canonical: https://kishansavaliya.com/magento-2-index-now.html
 -->
 
-# Panth IndexNow — Instant Bing & Yandex Submission for Magento 2 | Panth Infotech
+# Magento 2 IndexNow Extension: Instant Bing, Yandex and Search Engine URL Submission (Hyva + Luma)
 
 [![Magento 2.4.4 - 2.4.8](https://img.shields.io/badge/Magento-2.4.4%20--%202.4.8-orange?logo=magento&logoColor=white)](https://magento.com)
 [![PHP 8.1 - 8.4](https://img.shields.io/badge/PHP-8.1%20--%208.4-blue?logo=php&logoColor=white)](https://php.net)
-[![Hyva Compatible](https://img.shields.io/badge/Hyva-Compatible-0D9488)](https://www.hyva.io)
+[![Hyva + Luma](https://img.shields.io/badge/Themes-Hyva%20%2B%20Luma-14b8a6)](https://www.hyva.io)
+[![Live Demo & Details](https://img.shields.io/badge/Live%20Demo%20%26%20Details-magento--2--index--now-0D9488?style=flat)](https://kishansavaliya.com/magento-2-index-now.html)
 [![Packagist](https://img.shields.io/badge/Packagist-mage2kishan%2Fmodule--index--now-orange?logo=packagist&logoColor=white)](https://packagist.org/packages/mage2kishan/module-index-now)
-[![GitHub](https://img.shields.io/badge/GitHub-mage2sk%2Fmodule--index--now-181717?logo=github&logoColor=white)](https://github.com/mage2sk/module-index-now)
 [![Upwork Top Rated Plus](https://img.shields.io/badge/Upwork-Top%20Rated%20Plus-14a800?logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~016dd1767321100e21)
-[![Panth Infotech Agency](https://img.shields.io/badge/Agency-Panth%20Infotech-14a800?logo=upwork&logoColor=white)](https://www.upwork.com/agencies/1881421506131960778/)
 [![Website](https://img.shields.io/badge/Website-kishansavaliya.com-0D9488)](https://kishansavaliya.com)
 
-> **Instantly notify Bing, Yandex, Seznam, Naver and Yep whenever a product, category, or CMS page changes** — via the open IndexNow protocol, with one plug-and-play Magento 2 module. Zero cron jobs, zero queues, zero clicking "submit URL" in Bing Webmaster Tools for every edit.
+> **Tell Bing, Yandex, Seznam, Naver, and Yep about a page change the moment it happens.** Panth IndexNow hooks into Magento's product, category, and CMS page save events, batches the changed URLs, and fires one POST to `api.indexnow.org` after the admin response is already sent. No cron jobs. No queue tables. No manual URL submission.
 
-**Panth IndexNow** implements the [IndexNow protocol](https://www.indexnow.org/) inside Magento 2. When a merchant saves a product, category, or CMS page in admin, the module collects the changed URL and fires a single batched POST to `api.indexnow.org` at the end of the request — covering Bing, Yandex, Seznam, Naver and Yep in one call. Serves the required key-verification endpoint at `/panth_indexnow/key`, respects Magento URL rewrites and CMS URL suffixes, supports per-store API keys, and works identically on **Hyva** and **Luma** storefronts.
+**Product page:** [kishansavaliya.com/magento-2-index-now.html](https://kishansavaliya.com/magento-2-index-now.html)
 
 ---
 
-## 🚀 Need Custom Magento 2 Development?
+## Quick Answer
 
-> **Get a free quote for your project in 24 hours** — custom modules, Hyva themes, performance optimization, M1→M2 migrations, and Adobe Commerce Cloud.
+**What is Panth IndexNow?** It is a Magento 2 extension that implements the IndexNow protocol. When you save a product, category, or CMS page, the module automatically sends the updated URL to every IndexNow-participating search engine in a single batched request.
+
+**What does it add to my store?**
+
+- **Automatic URL submission** for products, categories, and CMS pages whenever they are saved in admin.
+- **Single batched POST** to `api.indexnow.org` covering Bing, Yandex, Seznam, Naver, and Yep in one call.
+- **Built-in key verification endpoint** at `/panth_indexnow/key` so search engines can confirm domain ownership.
+- **Per-store API keys** so you can run different keys across brand or language store views.
+
+**Which themes are supported?** Both **Hyva** and **Luma** (and any other Magento 2 theme). IndexNow runs entirely on the backend event layer and is theme-agnostic.
+
+**What does it need?** Magento 2.4.4 to 2.4.8, PHP 8.1 to 8.4, and the free `mage2kishan/module-core` package.
+
+**Does it cover Google?** No. Google does not participate in IndexNow. For Google, use an XML sitemap and Google Search Console. This module is for the IndexNow ecosystem only.
+
+---
+
+## Need Custom Magento 2 Development?
+
+> **Get a free quote for your project in 24 hours** for custom modules, Hyva themes, performance work, M1 to M2 migrations, and Adobe Commerce Cloud.
 
 <p align="center">
   <a href="https://kishansavaliya.com/get-quote">
@@ -38,7 +56,7 @@
 <tr>
 <td width="50%" align="center">
 
-### 🏆 Kishan Savaliya
+### Kishan Savaliya
 **Top Rated Plus on Upwork**
 
 [![Hire on Upwork](https://img.shields.io/badge/Hire%20on%20Upwork-Top%20Rated%20Plus-14a800?style=for-the-badge&logo=upwork&logoColor=white)](https://www.upwork.com/freelancers/~016dd1767321100e21)
@@ -49,7 +67,7 @@ Adobe Certified • Hyva Specialist
 </td>
 <td width="50%" align="center">
 
-### 🏢 Panth Infotech Agency
+### Panth Infotech Agency
 **Magento Development Team**
 
 [![Visit Agency](https://img.shields.io/badge/Visit%20Agency-Panth%20Infotech-14a800?style=for-the-badge&logo=upwork&logoColor=white)](https://www.upwork.com/agencies/1881421506131960778/)
@@ -67,18 +85,17 @@ Performance • SEO • Adobe Commerce Cloud
 
 ## Table of Contents
 
+- [Who Is It For](#who-is-it-for)
 - [Key Features](#key-features)
-- [What is IndexNow?](#what-is-indexnow)
-- [Which Search Engines Does It Cover?](#which-search-engines-does-it-cover)
+- [What is IndexNow](#what-is-indexnow)
+- [Which Search Engines Does It Cover](#which-search-engines-does-it-cover)
 - [Screenshot](#screenshot)
 - [Compatibility](#compatibility)
 - [Installation](#installation)
 - [Configuration](#configuration)
-- [How It Works — Under the Hood](#how-it-works--under-the-hood)
-- [What Triggers a Submission?](#what-triggers-a-submission)
+- [How It Works](#how-it-works)
 - [The Key Verification Endpoint](#the-key-verification-endpoint)
 - [Multi-Store Support](#multi-store-support)
-- [Troubleshooting](#troubleshooting)
 - [FAQ](#faq)
 - [Support](#support)
 - [About Panth Infotech](#about-panth-infotech)
@@ -86,84 +103,93 @@ Performance • SEO • Adobe Commerce Cloud
 
 ---
 
+## Who Is It For
+
+- **Merchants with active catalogs** who add or update products often and want Bing and Yandex to pick up changes within minutes instead of waiting for the next scheduled crawl.
+- **Stores in regions where Bing, Yandex, or Seznam drive real traffic**, such as the US, Russia, Eastern Europe, or South Korea.
+- **Hyva storefronts** that want an IndexNow integration with no JavaScript overhead, since the module works entirely at the PHP event layer.
+- **Multi-brand or multi-language setups** that need a separate IndexNow API key per store view.
+- **Developers and agencies** who want a plug-and-play IndexNow solution with no queue tables, no extra infra, and clean MEQP-compliant code.
+
+---
+
 ## Key Features
 
 ### Automatic URL Submission
 
-- **Product saves** auto-submit the product URL to IndexNow the moment an admin clicks Save
-- **Category saves** auto-submit the category listing URL
-- **CMS page saves** auto-submit the rewritten canonical CMS URL (respects custom URL rewrites + configured suffix)
-- **Single request batching** — multiple entity saves in one admin action fire one batched POST, not one per entity
-- **End-of-request flush** via `register_shutdown_function` — observer stays out of the critical path, merchant's save button returns instantly
+- **Product saves** fire a URL submission to IndexNow the moment an admin clicks Save.
+- **Category saves** submit the category listing URL.
+- **CMS page saves** submit the correct canonical URL, respecting custom URL rewrites and the configured suffix.
+- **Batched POST** - multiple entity saves in one admin action produce one POST, not one per entity.
+- **End-of-request flush** via `register_shutdown_function`, so the merchant's Save button returns at normal speed. The IndexNow call happens after Magento has already sent the admin response.
 
 ### Per-Store API Keys
 
-- **Scope-aware** — configure one key per website or store view
-- **Correct host in every payload** — each store's submission uses its own `host`, `key`, and `keyLocation`
-- **Single default key works too** — set it once at Default Config and every store inherits
+- **Scope-aware config** - configure one key at Default Config and every store inherits it, or set different keys per website or store view.
+- **Correct host in every payload** - each store's submission uses its own `host`, `key`, and `keyLocation` values.
+- **Multi-store batching** - saving entities across two store views in one action fires one POST per store, each with that store's own key.
 
 ### Built-in Key Verification Endpoint
 
-- **`/panth_indexnow/key`** — IndexNow's required verification URL, served as plain text from the admin-configured key
-- **Optional `?key=<value>` query param** — lets crawlers pre-validate with timing-safe comparison; mismatches return 404 so the endpoint can't be abused as an arbitrary text echo service
-- **Auto-404 when disabled** — if the feature flag is off or the key is empty, the endpoint returns a clean 404
-- **Module-owned frontName** — uses `panth_indexnow` as its route's frontName so the module never shares a route registration with other modules (no controller resolution races)
-
-### Safe Defaults
-
-- **Disabled by default** — must be explicitly enabled in admin so a fresh install doesn't start submitting URLs until you're ready
-- **ACL-gated** (`Panth_IndexNow::config`) — only roles with the permission can see / save the settings
-- **Per-store toggle** — enable globally and disable on specific store views (or vice versa)
+- **`/panth_indexnow/key`** serves the configured API key as plain text, which IndexNow requires to confirm domain ownership.
+- **Optional `?key=value` query param** - if present, must match the configured key with a timing-safe comparison; mismatches return 404.
+- **Auto-404 when disabled** - returns 404 when the module is off or the key is empty.
+- **Owns its own route** - uses `panth_indexnow` as the frontName so the endpoint never collides with another module's routes.
 
 ### Defensive HTTP Client
 
-- **15-second timeout** — won't hang the admin request if IndexNow is slow
-- **Full error logging** — HTTP status + response body logged to `var/log/system.log` for post-mortem
-- **Never re-throws** — a failed submission never crashes the entity save that triggered it
+- **15-second timeout** - won't stall the admin request if the IndexNow API is slow.
+- **Full error logging** - HTTP status and response body are written to `var/log/system.log` on failure.
+- **Never re-throws** - a failed submission never crashes the entity save that caused it.
+- **10,000 URL batch cap** - the IndexNow spec limit is handled automatically via `array_chunk`.
+
+### Safe Defaults
+
+- **Disabled by default** - a fresh install does not submit anything until you explicitly enable it and enter a key.
+- **ACL-gated** (`Panth_IndexNow::config`) - only admin roles with the permission can see or save the settings.
 
 ---
 
-## What is IndexNow?
+## What is IndexNow
 
-[IndexNow](https://www.indexnow.org/) is an open protocol co-created by **Microsoft** and **Yandex** that lets websites notify search engines the moment their content changes — rather than waiting for the next crawl. A website POSTs a list of changed URLs to a shared endpoint, and every participating search engine receives the notification simultaneously.
+[IndexNow](https://www.indexnow.org/) is an open protocol started by Microsoft and Yandex. It lets any website tell participating search engines about content changes the moment they happen, instead of waiting for the next crawl cycle.
+
+The site sends a POST with a list of changed URLs to `api.indexnow.org`. Every participating engine receives the notification from that single request. A key file hosted on the domain proves ownership so only the site itself can submit URLs for its host.
 
 Key benefits for eCommerce stores:
 
-1. **Faster indexing** — new products and category changes appear in search results within minutes instead of days
-2. **Lower crawl load** — search engines don't need to re-crawl your sitemap to discover changes
-3. **One POST, many engines** — submitting to `api.indexnow.org` fanouts to Bing, Yandex, Seznam, Naver and Yep in a single request
-4. **Bi-directional trust** — the `keyLocation` URL on your site proves ownership, so only you can submit URLs for your domain
-
-The module handles the entire flow automatically — key hosting, URL collection, batching, submission, and error logging.
+- **Faster indexing** - updated products and categories can appear in Bing and Yandex within minutes.
+- **Lower crawl load** - engines spend fewer resources re-crawling an unchanged sitemap.
+- **One POST, many engines** - `api.indexnow.org` fans out to Bing, Yandex, Seznam, Naver, and Yep in one call.
 
 ---
 
-## Which Search Engines Does It Cover?
+## Which Search Engines Does It Cover
 
-IndexNow has a defined list of participating search engines. Submission via `api.indexnow.org` is fanned out to all of them:
+Submitting to `api.indexnow.org` notifies all participating engines:
 
 | Search Engine | IndexNow Support |
 |---|---|
-| **Bing** | ✅ Yes |
-| **Yandex** | ✅ Yes |
-| **Seznam** | ✅ Yes |
-| **Naver** | ✅ Yes |
-| **Yep** | ✅ Yes |
-| **DuckDuckGo** | ➖ Indirect (uses Bing's index) |
-| **Google** | ❌ No — Google does not participate in IndexNow |
-| **Baidu** | ❌ No |
+| **Bing** | Yes |
+| **Yandex** | Yes |
+| **Seznam** | Yes |
+| **Naver** | Yes |
+| **Yep** | Yes |
+| **DuckDuckGo** | Indirect (uses Bing's index) |
+| **Google** | No - Google does not participate in IndexNow |
+| **Baidu** | No |
 
-> **Note on Google:** Google has its own crawl schedule and doesn't accept IndexNow submissions. To speed up Google indexing, pair this module with an XML sitemap (e.g. `mage2kishan/module-xml-sitemap`) and use Google Search Console. This module is for Bing / Yandex / Seznam / Naver / Yep — the search engines that actually honor IndexNow.
+For Google indexing, use an XML sitemap (e.g. `mage2kishan/module-xml-sitemap`) and Google Search Console. This module covers Bing, Yandex, Seznam, Naver, and Yep only.
 
 ---
 
 ## Screenshot
 
-### Admin Configuration — Stores → Configuration → Panth Extensions → IndexNow
+### Admin Configuration - Stores - Configuration - Panth Extensions - IndexNow
 
-![Panth IndexNow admin configuration screen — Enable IndexNow, API Key, Bing IndexNow link, key served at /panth_indexnow/key](docs/screenshots/admin-config.png)
+![Panth IndexNow admin configuration screen with Enable IndexNow toggle and API Key field](docs/screenshots/admin-config.png)
 
-*Two settings, both at store-view scope: the master enable toggle and the API key. The inline comments link directly to Bing's IndexNow key generator and remind the merchant where the verification file is served.*
+*Two settings at store-view scope: the master enable toggle and the API key. The inline comment links to Bing's IndexNow key generator and shows where the verification file is served.*
 
 ---
 
@@ -173,13 +199,13 @@ IndexNow has a defined list of participating search engines. Submission via `api
 |---|---|
 | Magento Open Source | 2.4.4, 2.4.5, 2.4.6, 2.4.7, 2.4.8 |
 | Adobe Commerce | 2.4.4, 2.4.5, 2.4.6, 2.4.7, 2.4.8 |
-| Adobe Commerce Cloud | 2.4.4 — 2.4.8 |
+| Adobe Commerce Cloud | 2.4.4 to 2.4.8 |
 | PHP | 8.1.x, 8.2.x, 8.3.x, 8.4.x |
 | MySQL | 8.0+ |
 | MariaDB | 10.4+ |
-| Hyva Theme | 1.0+ (native support) |
+| Hyva Theme | 1.0+ |
 | Luma Theme | Native support |
-| Required Dependency | `mage2kishan/module-core` ^1.0 |
+| Required Dependency | `mage2kishan/module-core` (free) |
 
 ---
 
@@ -198,148 +224,97 @@ bin/magento cache:flush
 
 ### Manual Installation via ZIP
 
-1. Download the latest release ZIP from [Packagist](https://packagist.org/packages/mage2kishan/module-index-now) or the [Adobe Commerce Marketplace](https://commercemarketplace.adobe.com)
-2. Extract the contents to `app/code/Panth/IndexNow/` in your Magento installation
-3. Ensure `Panth_Core` is installed (required dependency)
-4. Run the same commands as above starting from `bin/magento module:enable`
+1. Download the latest release from [Packagist](https://packagist.org/packages/mage2kishan/module-index-now) or from the [product page](https://kishansavaliya.com/magento-2-index-now.html).
+2. Extract the contents to `app/code/Panth/IndexNow/` in your Magento installation.
+3. Make sure `Panth_Core` is installed (required dependency).
+4. Run the commands above starting from `bin/magento module:enable`.
 
 ### Verify Installation
 
 ```bash
 bin/magento module:status Panth_IndexNow
-# Expected output: Module is enabled
+# Expected: Module is enabled
 ```
 
 ### Get an IndexNow API Key
 
-1. Visit [Bing IndexNow](https://www.bing.com/indexnow) or [Yandex IndexNow](https://yandex.com/support/webmaster/indexnow.html)
-2. Generate a UUID-style key (e.g. `a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6`) — or invent any 8+ character hex string; IndexNow generates new keys per-site
-3. Paste the key into Magento admin → Stores → Configuration → Panth Extensions → IndexNow → API Key
-4. Save and flush the cache — submissions begin on the next catalog / CMS save
+1. Go to [Bing IndexNow](https://www.bing.com/indexnow) or [Yandex IndexNow](https://yandex.com/support/webmaster/indexnow.html).
+2. Generate or copy a UUID-style key (any 8+ hex character string works).
+3. Paste the key in **Stores - Configuration - Panth Extensions - IndexNow - API Key**.
+4. Save and flush the cache. Submissions start on the next product, category, or CMS page save.
 
 ---
 
 ## Configuration
 
-Navigate to **Admin → Stores → Configuration → Panth Extensions → IndexNow** to configure the module.
+Go to **Stores - Configuration - Panth Extensions - IndexNow**.
 
-| Setting | Default | Scope | Description |
+| Setting | Group | Default | Description |
 |---|---|---|---|
-| Enable IndexNow | No | Store View | Master toggle. When on, product / category / CMS page saves submit the changed URL to IndexNow. |
-| API Key | (empty) | Store View | A UUID-style key (e.g. `a1b2c3d4e5f6…`). The key is served at `/panth_indexnow/key` for verification. Must be at least 8 hex characters. |
+| Enable IndexNow | IndexNow Protocol | No | Master toggle. When on, product, category, and CMS page saves automatically submit the changed URL to IndexNow. |
+| API Key | IndexNow Protocol | (empty) | A UUID-style key (e.g. `a1b2c3d4e5f6...`). The key is served at `/panth_indexnow/key` for verification. Must be at least 8 hex characters. |
 
-Both settings are scope-aware — configure one key globally or set different keys per store view if you manage multiple brand domains from one Magento install.
-
----
-
-## How It Works — Under the Hood
-
-The module is deliberately small (three classes — an observer, a submitter, and a controller) and leans on Magento's native event system rather than inventing a scheduler:
-
-```
- ┌────────────────────┐     save_after event     ┌─────────────────────┐
- │ Admin saves a      │ ─────────────────────▶   │ EntityChangeObserver│
- │ product / category │                          │                     │
- │ / CMS page         │                          │ - resolves URL      │
- └────────────────────┘                          │ - collects in batch │
-                                                  │ - registers flush   │
-                                                  └──────────┬──────────┘
-                                                             │
-                                                             │ PHP shutdown
-                                                             ▼
-                                                  ┌─────────────────────┐
-                                                  │ Submitter           │
-                                                  │                     │
-                                                  │ POST api.indexnow.  │
-                                                  │  org/IndexNow       │
-                                                  │                     │
-                                                  │ {                   │
-                                                  │   host, key,        │
-                                                  │   keyLocation,      │
-                                                  │   urlList[]         │
-                                                  │ }                   │
-                                                  └──────────┬──────────┘
-                                                             │
-                                                             ▼
-                                                    Bing, Yandex, Seznam,
-                                                       Naver, Yep
-```
-
-**Design decisions:**
-
-- **End-of-request flush** — the observer doesn't POST on every save; it accumulates URLs per-store in a static array and fires one batched request in `register_shutdown_function`. A merchant saving 5 product edits in one admin action gets 1 POST, not 5.
-- **Store-scoped batching** — multi-store saves to different stores fire one POST per store (each with its own key + host), batched by store.
-- **No database writes** — no queue table, no pending table. State lives only in the PHP request that triggered it. If PHP-FPM dies mid-request the batch is lost, but that's an acceptable trade-off for zero-infrastructure operation.
-- **Never blocks** — the save button returns the moment the entity is written. The IndexNow POST happens after Magento has already sent the response.
+Both settings are store-view scoped. Set one default key globally, or different keys per website or store view for multi-brand setups.
 
 ---
 
-## What Triggers a Submission?
+## How It Works
 
-| Event | Observer Fires | URL Submitted |
-|---|---|---|
-| `catalog_product_save_after` | ✅ | Product URL via `$product->getProductUrl()` (respects store rewrites) |
-| `catalog_category_save_after` | ✅ | Category URL via `$category->getUrl()` |
-| `cms_page_save_after` | ✅ | CMS page URL via `\Magento\Cms\Helper\Page::getPageUrl()` inside store emulation (respects URL rewrites + suffix) |
-| `catalog_product_delete_after` | ➖ | Not subscribed — IndexNow has no "remove" semantic; search engines detect 404s via normal re-crawl |
-| `catalog_category_delete_after` | ➖ | Not subscribed — same reason |
-| `cms_page_delete_after` | ➖ | Not subscribed — same reason |
-| Catalog rule save | ➖ | Not subscribed (product URLs don't change from a rule save) |
-| Stock qty change | ➖ | Not subscribed |
+The module uses three classes: an observer, a submitter, and a controller.
+
+1. Admin saves a product, category, or CMS page.
+2. The `EntityChangeObserver` fires on the matching `save_after` event, resolves the canonical URL for that store, and adds it to an in-memory batch.
+3. On the first URL collected, a `register_shutdown_function` callback is registered. This runs after Magento has already sent the admin response, so the merchant's Save button returns at normal speed.
+4. At PHP shutdown, the submitter sends one batched POST per store view to `api.indexnow.org`, including the `host`, `key`, `keyLocation`, and `urlList` fields required by the IndexNow spec.
+5. Bing, Yandex, Seznam, Naver, and Yep all receive the notification from that single POST.
+6. Any HTTP or connection error is logged to `var/log/system.log`. The original save is never affected.
+
+**What triggers a submission:**
+
+| Event | URL Submitted |
+|---|---|
+| `catalog_product_save_after` | Product URL via `$product->getProductUrl()` |
+| `catalog_category_save_after` | Category URL via `$category->getUrl()` |
+| `cms_page_save_after` | CMS page URL with URL rewrites and suffix applied |
+
+Deletes are not submitted. IndexNow has no "remove" instruction - search engines find 404s on their next crawl.
 
 ---
 
 ## The Key Verification Endpoint
 
-IndexNow requires the domain being submitted to serve the API key as a plain-text file at a declared URL. The module serves this automatically at:
+IndexNow requires that the domain being submitted serves the API key as plain text at a declared URL. The module handles this automatically:
 
 ```
 https://yourstore.com/panth_indexnow/key
 ```
 
-Accepted URL forms:
-
-| URL | Behavior |
+| URL Form | Behavior |
 |---|---|
 | `/panth_indexnow/key` | Returns the configured key as `text/plain` (HTTP 200) |
-| `/panth_indexnow/key?key=<correct>` | Returns the key when the query matches (timing-safe compare) |
-| `/panth_indexnow/key?key=<wrong>` | Returns 404 (prevents use as arbitrary text echo service) |
-| `/panth_indexnow/key` when IndexNow disabled | Returns 404 |
-| `/panth_indexnow/key` when API key empty | Returns 404 |
+| `/panth_indexnow/key?key=correct` | Returns the key when the query param matches (timing-safe compare) |
+| `/panth_indexnow/key?key=wrong` | Returns 404 |
+| `/panth_indexnow/key` when IndexNow is disabled | Returns 404 |
+| `/panth_indexnow/key` when API key is empty | Returns 404 |
 
-The key comparison is **timing-safe** via `hash_equals` — the endpoint resists timing-attack key discovery.
+The comparison uses `hash_equals` to prevent timing-attack key discovery.
 
 ---
 
 ## Multi-Store Support
 
-The module is fully scope-aware:
+Every configuration setting respects Magento's standard scope hierarchy:
 
-- **Default key** — set once at Default Config, inherited by every store
-- **Per-website key** — set at Website scope for brand-specific keys
-- **Per-store key** — set at Store View scope for the most granular setup
+- **Default key** - set once, inherited by every website and store view.
+- **Per-website key** - override at website scope for brand-specific keys.
+- **Per-store key** - most granular; useful when one Magento install powers multiple independent brand domains.
 
-Each submission uses the correct key + host + keyLocation for the store the entity belongs to. Saving a product assigned to Store A and a CMS page assigned to Store B in one admin action triggers **two** POSTs — one per store — each with that store's own key.
+When a single admin action saves entities belonging to two different stores, the module fires one POST per store, each carrying that store's own key and host:
 
 ```
-Hyva store  → POST {host: hyva.test,  key: hyva-key-...,  keyLocation: https://hyva.test/panth_indexnow/key}
-Luma store  → POST {host: luma.test,  key: luma-key-...,  keyLocation: https://luma.test/panth_indexnow/key}
+Store A  ->  POST { host: storea.com,  key: key-a,  keyLocation: https://storea.com/panth_indexnow/key }
+Store B  ->  POST { host: storeb.com,  key: key-b,  keyLocation: https://storeb.com/panth_indexnow/key }
 ```
-
----
-
-## Troubleshooting
-
-| Issue | Cause | Resolution |
-|---|---|---|
-| Nothing gets submitted after saving | Module not enabled at store scope | Enable in admin at the specific store view (not just default) |
-| `/panth_indexnow/key` returns 404 | Feature disabled or key empty | Enable + set API key + flush cache |
-| IndexNow API returns 422 | Your site's host isn't publicly reachable | Expected on dev/staging (`.test`, `.local`). Will work on production domains. |
-| IndexNow API returns 403 | Key file doesn't match submitted key | Verify `/panth_indexnow/key` returns the same value as the admin API Key field |
-| Submissions happen but search results don't update | Google doesn't honor IndexNow | Use XML sitemap + Search Console for Google. IndexNow covers Bing / Yandex only. |
-| Batch size > 10,000 URLs | Observer batches in chunks of 10K automatically | No action needed — the spec maximum is handled by `array_chunk` |
-| Admin role doesn't see the config section | ACL resource not granted | System → Permissions → User Roles → edit the role → grant Panth Extensions → IndexNow |
-| Log says "unexpected HTTP status: 0" | Curl failure (timeout, DNS, firewall) | Check that `api.indexnow.org` is reachable from your Magento server |
 
 ---
 
@@ -347,47 +322,39 @@ Luma store  → POST {host: luma.test,  key: luma-key-...,  keyLocation: https:/
 
 ### Does this submit URLs to Google?
 
-No. Google does not participate in IndexNow and has stated they maintain their own crawl schedule. For Google indexing, use a proper XML sitemap and Google Search Console. This module is specifically for the IndexNow ecosystem (Bing, Yandex, Seznam, Naver, Yep).
+No. Google does not participate in IndexNow. For Google, use an XML sitemap and Google Search Console. This module covers Bing, Yandex, Seznam, Naver, and Yep only.
 
-### Do I need separate keys for Bing, Yandex, Seznam, and Naver?
+### Do I need separate keys for Bing, Yandex, and the other engines?
 
-No — that's the point of IndexNow. One key, submitted to `api.indexnow.org`, fans out to every participating engine. Generate the key once at [Bing IndexNow](https://www.bing.com/indexnow) or [Yandex IndexNow](https://yandex.com/support/webmaster/indexnow.html) and paste it into Magento.
+No. One key submitted to `api.indexnow.org` fans out to every participating engine. Generate the key once at [Bing IndexNow](https://www.bing.com/indexnow) and paste it into Magento.
 
 ### Where is the key file served?
 
-`https://yourstore.com/panth_indexnow/key` — IndexNow crawlers hit this URL to verify domain ownership before trusting submitted URLs.
+At `https://yourstore.com/panth_indexnow/key`. IndexNow crawlers fetch this URL to verify domain ownership before trusting submitted URLs. The module serves it automatically from the admin-configured key.
 
-### What happens if the IndexNow API is down?
+### Will product saves slow down?
 
-The HTTP call times out after 15 seconds, the failure is logged to `var/log/system.log`, and the save that triggered it completes normally. No admin-facing error, no retry queue — the next save attempts a fresh submission.
+No. The observer only queues URLs during the save. The actual POST to IndexNow runs in `register_shutdown_function`, after Magento has already sent the admin response. The Save button returns at normal speed.
 
-### Will this slow down product saves?
+### What happens if the IndexNow API is down or unreachable?
 
-No. The observer only enqueues URLs during save and fires the actual POST in `register_shutdown_function` — **after** Magento has already sent the response to the admin. The merchant's Save button returns at normal speed.
+The HTTP call times out after 15 seconds. The failure is logged to `var/log/system.log`. The entity save completes normally. There is no retry queue - the next save starts a fresh attempt.
 
-### Does it work with Hyva?
+### Does it work with Hyva themes?
 
-Yes. IndexNow operates at the backend event layer (`catalog_product_save_after`, etc.) — it's theme-agnostic. Runs identically on Hyva, Luma, or any Magento 2 theme.
+Yes. The module runs on the backend event layer (`catalog_product_save_after`, etc.) and has no frontend JavaScript. It works identically on Hyva, Luma, or any other Magento 2 theme.
 
-### Can I submit a sitemap URL manually?
+### What about product or category deletions?
 
-IndexNow is per-URL, not per-sitemap — Bing already polls your sitemap separately. If you want to force a re-crawl of a specific URL (not triggered by a save), you'd need a custom CLI command; this module doesn't ship one in v1.0.
+Deletions are not submitted. IndexNow is designed for new or changed content. When a product is deleted and the URL returns 404, search engines detect this on their next crawl without any notification needed.
 
-### Is Panth_Core required?
+### Can I use different keys for different stores in one Magento install?
 
-Yes. `mage2kishan/module-core` is a required dependency and is pulled in automatically by Composer. Core provides the admin tab layout and common utilities.
+Yes. The API Key setting is store-view scoped. Set a different key per store view, per website, or one global default - whichever fits your setup.
 
-### Does it support multi-store / multi-language?
+### Does Panth IndexNow need Panth Core?
 
-Yes. Every configuration setting respects Magento's standard scope hierarchy (default → website → store view). Set different keys per store view, per website, or one default key globally — whichever fits your setup.
-
-### What about product / category / CMS page deletions?
-
-Not submitted. IndexNow is designed for **new or changed** content. Deletions are detected by search engines through normal re-crawl when they hit a 404 on the next visit to the URL.
-
-### Will this hit rate limits?
-
-IndexNow allows up to 10,000 URLs per POST. The module batches automatically via `array_chunk`, so a burst of 15,000 saves produces two POSTs (10K + 5K). You're extremely unlikely to hit IndexNow's per-day limits from a normal eCommerce catalog.
+Yes. `mage2kishan/module-core` is a free required dependency that Composer installs for you automatically.
 
 ---
 
@@ -395,6 +362,7 @@ IndexNow allows up to 10,000 URLs per POST. The module batches automatically via
 
 | Channel | Contact |
 |---|---|
+| Product Page | [kishansavaliya.com/magento-2-index-now.html](https://kishansavaliya.com/magento-2-index-now.html) |
 | Email | kishansavaliyakb@gmail.com |
 | Website | [kishansavaliya.com](https://kishansavaliya.com) |
 | WhatsApp | +91 84012 70422 |
@@ -404,9 +372,9 @@ IndexNow allows up to 10,000 URLs per POST. The module batches automatically via
 
 Response time: 1-2 business days.
 
-### 💼 Need Custom Magento Development?
+### Need Custom Magento Development?
 
-Looking for **custom Magento module development**, **Hyva theme customization**, **store migrations**, or **performance optimization**? Get a free quote in 24 hours:
+Looking for **custom Magento module development**, **Hyva theme work**, **store migrations**, or **performance tuning**? Get a free quote in 24 hours:
 
 <p align="center">
   <a href="https://kishansavaliya.com/get-quote">
@@ -423,60 +391,46 @@ Looking for **custom Magento module development**, **Hyva theme customization**,
     <img src="https://img.shields.io/badge/Visit-Panth%20Infotech%20Agency-14a800?style=for-the-badge&logo=upwork&logoColor=white" alt="Visit Agency" />
   </a>
   &nbsp;&nbsp;
-  <a href="https://kishansavaliya.com">
-    <img src="https://img.shields.io/badge/Visit%20Website-kishansavaliya.com-0D9488?style=for-the-badge" alt="Visit Website" />
+  <a href="https://kishansavaliya.com/magento-2-index-now.html">
+    <img src="https://img.shields.io/badge/View%20Product%20Page-magento--2--index--now-0D9488?style=for-the-badge" alt="View Product Page" />
   </a>
 </p>
-
-**Specializations:**
-
-- 🛒 **Magento 2 Module Development** — custom extensions following MEQP standards
-- 🎨 **Hyva Theme Development** — Alpine.js + Tailwind CSS, lightning-fast storefronts
-- 🖌️ **Luma Theme Customization** — pixel-perfect designs, responsive layouts
-- ⚡ **Performance Optimization** — Core Web Vitals, page speed, caching strategies
-- 🔍 **Magento SEO** — structured data, hreflang, sitemaps, AI-generated meta
-- 🛍️ **Checkout Optimization** — one-page checkout, conversion rate optimization
-- 🚀 **M1 to M2 Migrations** — data migration, custom feature porting
-- ☁️ **Adobe Commerce Cloud** — deployment, CI/CD, performance tuning
-- 🔌 **Third-party Integrations** — payment gateways, ERP, CRM, marketing tools
-
----
-
-## License
-
-Panth IndexNow is licensed under a proprietary license — see `LICENSE.txt`. One license per Magento installation.
 
 ---
 
 ## About Panth Infotech
 
-Built and maintained by **Kishan Savaliya** — [kishansavaliya.com](https://kishansavaliya.com) — a **Top Rated Plus** Magento developer on Upwork with 10+ years of eCommerce experience.
+Built and maintained by **Kishan Savaliya** ([kishansavaliya.com](https://kishansavaliya.com)), a **Top Rated Plus** Magento developer on Upwork with 10+ years of eCommerce experience.
 
-**Panth Infotech** is a Magento 2 development agency specializing in high-quality, security-focused extensions and themes for both Hyva and Luma storefronts. Our extension suite covers SEO, performance, checkout, product presentation, customer engagement, and store management — over 34 modules built to MEQP standards and tested across Magento 2.4.4 to 2.4.8.
+**Panth Infotech** is a Magento 2 development agency that builds high quality, security focused extensions and themes for both Hyva and Luma storefronts. The extension suite covers SEO, performance, checkout, product presentation, customer engagement, and store management, with each module built to MEQP standards and tested across Magento 2.4.4 to 2.4.8.
 
-Browse the full extension catalog on the [Adobe Commerce Marketplace](https://commercemarketplace.adobe.com) or [Packagist](https://packagist.org/packages/mage2kishan/).
+Browse the full extension catalog on our [Magento extensions page](https://kishansavaliya.com/magento-extensions.html) or on [Packagist](https://packagist.org/packages/mage2kishan/).
 
-### Quick Links
+---
 
-- 🌐 **Website:** [kishansavaliya.com](https://kishansavaliya.com)
-- 💬 **Get a Quote:** [kishansavaliya.com/get-quote](https://kishansavaliya.com/get-quote)
-- 👨‍💻 **Upwork Profile (Top Rated Plus):** [upwork.com/freelancers/~016dd1767321100e21](https://www.upwork.com/freelancers/~016dd1767321100e21)
-- 🏢 **Upwork Agency:** [upwork.com/agencies/1881421506131960778](https://www.upwork.com/agencies/1881421506131960778/)
-- 📦 **Packagist:** [packagist.org/packages/mage2kishan/module-index-now](https://packagist.org/packages/mage2kishan/module-index-now)
-- 🐙 **GitHub:** [github.com/mage2sk/module-index-now](https://github.com/mage2sk/module-index-now)
-- 🛒 **Adobe Marketplace:** [commercemarketplace.adobe.com](https://commercemarketplace.adobe.com)
-- 📧 **Email:** kishansavaliyakb@gmail.com
-- 📱 **WhatsApp:** +91 84012 70422
+## Quick Links
+
+| Resource | Link |
+|---|---|
+| **Product Page** | [magento-2-index-now.html](https://kishansavaliya.com/magento-2-index-now.html) |
+| **Packagist** | [mage2kishan/module-index-now](https://packagist.org/packages/mage2kishan/module-index-now) |
+| **GitHub** | [mage2sk/module-index-now](https://github.com/mage2sk/module-index-now) |
+| **Website** | [kishansavaliya.com](https://kishansavaliya.com) |
+| **Free Quote** | [kishansavaliya.com/get-quote](https://kishansavaliya.com/get-quote) |
+| **Upwork (Top Rated Plus)** | [Hire Kishan Savaliya](https://www.upwork.com/freelancers/~016dd1767321100e21) |
+| **Upwork Agency** | [Panth Infotech](https://www.upwork.com/agencies/1881421506131960778/) |
+| **Email** | kishansavaliyakb@gmail.com |
+| **WhatsApp** | +91 84012 70422 |
 
 ---
 
 <p align="center">
-  <strong>Ready to get your store indexed by Bing and Yandex in minutes, not days?</strong><br/>
-  <a href="https://kishansavaliya.com/get-quote">
-    <img src="https://img.shields.io/badge/%F0%9F%9A%80%20Get%20Started%20%E2%86%92-Free%20Quote%20in%2024h-DC2626?style=for-the-badge" alt="Get Started" />
+  <strong>Ready to get your store indexed by Bing and Yandex faster?</strong><br/>
+  <a href="https://kishansavaliya.com/magento-2-index-now.html">
+    <img src="https://img.shields.io/badge/%F0%9F%9A%80%20See%20IndexNow%20%E2%86%92-Product%20Page%20%26%20Details-DC2626?style=for-the-badge" alt="See IndexNow" />
   </a>
 </p>
 
 ---
 
-**SEO Keywords:** magento 2 indexnow, magento 2 bing indexing, magento 2 yandex submission, magento 2 instant indexing, magento 2 search engine ping, magento 2 bing webmaster, magento 2 url submission, magento 2 seo extension, magento 2 seznam indexing, magento 2 naver indexing, magento 2 yep search, magento 2 crawl optimization, magento 2 real-time seo, magento 2 product url submission, magento 2 category url submission, magento 2 cms page submission, hyva indexnow, hyva bing indexing, luma indexnow, luma bing submission, magento 2 seo automation, magento 2 webmaster tools, magento 2 api indexing, magento 2 search console automation, magento 2.4.8 indexnow, magento 2 PHP 8.4 indexnow, mage2kishan indexnow, panth infotech indexnow, kishan savaliya magento, hire magento developer upwork, top rated plus magento freelancer, custom magento development, adobe commerce indexnow, magento 2 bing key, magento 2 yandex key, magento 2 indexnow protocol, magento 2 multi-store indexnow, magento 2 url batching, magento 2 indexnow plugin, magento 2 search engine notification
+**SEO Keywords:** magento 2 indexnow, magento 2 indexnow extension, magento 2 indexnow module, magento 2 bing indexing, magento 2 yandex submission, magento 2 instant indexing, magento 2 search engine ping, magento 2 url submission, magento 2 seo extension, magento 2 indexnow protocol, hyva indexnow, hyva bing indexing, luma indexnow, luma bing submission, magento 2 bing webmaster, magento 2 seznam indexing, magento 2 naver indexing, magento 2 yep search, magento 2 real-time seo, magento 2 product url submission, magento 2 category url submission, magento 2 cms page submission, magento 2 indexnow key endpoint, magento 2 multi-store indexnow, magento 2 url batching, magento 2 seo automation, magento 2 crawl optimization, magento 2.4.8 indexnow, php 8.4 indexnow, mage2kishan indexnow, panth indexnow, panth infotech, hire magento developer, top rated plus upwork, kishan savaliya magento, custom magento development, adobe commerce indexnow
