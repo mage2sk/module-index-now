@@ -9,12 +9,6 @@ use Magento\Store\Model\ScopeInterface;
 use Magento\Store\Model\StoreManagerInterface;
 use Psr\Log\LoggerInterface;
 
-/**
- * Submits URLs to the IndexNow API for instant indexing by Bing, Yandex, and other
- * participating search engines.
- *
- * @see https://www.indexnow.org/documentation
- */
 class Submitter
 {
     private const ENDPOINT = 'https://api.indexnow.org/IndexNow';
@@ -22,12 +16,6 @@ class Submitter
 
     private const XML_INDEXNOW_API_KEY = 'panth_index_now/indexnow/api_key';
 
-    /**
-     * @param CurlFactory           $curlFactory
-     * @param StoreManagerInterface $storeManager
-     * @param ScopeConfigInterface  $scopeConfig
-     * @param LoggerInterface       $logger
-     */
     public function __construct(
         private readonly CurlFactory $curlFactory,
         private readonly StoreManagerInterface $storeManager,
@@ -36,16 +24,6 @@ class Submitter
     ) {
     }
 
-    /**
-     * Submit a list of URLs to IndexNow for the given store.
-     *
-     * URLs are automatically batched in chunks of up to 10,000 (the protocol maximum).
-     *
-     * @param string[] $urls    Fully-qualified URLs to submit.
-     * @param int      $storeId
-     *
-     * @return bool True when every batch succeeds (HTTP 200/202), false otherwise.
-     */
     public function submit(array $urls, int $storeId): bool
     {
         $urls = array_values(array_unique(array_filter($urls)));
@@ -68,11 +46,7 @@ class Submitter
         }
 
         $host = (string) parse_url($baseUrl, PHP_URL_HOST);
-        // Key endpoint is served by Panth\IndexNow\Controller\Key\Index under
-        // the module-owned `panth_indexnow` frontName (see
-        // etc/frontend/routes.xml). Keeping this path in sync with the
-        // controller's route is required by the IndexNow protocol — the
-        // value we declare here is what the search engine fetches.
+
         $keyLocation = $baseUrl . '/panth_indexnow/key';
 
         $success = true;
@@ -85,16 +59,6 @@ class Submitter
         return $success;
     }
 
-    /**
-     * POST a single batch to the IndexNow endpoint.
-     *
-     * @param string[] $urls
-     * @param string   $host
-     * @param string   $apiKey
-     * @param string   $keyLocation
-     *
-     * @return bool
-     */
     private function sendBatch(array $urls, string $host, string $apiKey, string $keyLocation): bool
     {
         $payload = [
@@ -134,12 +98,6 @@ class Submitter
         }
     }
 
-    /**
-     * Return the configured IndexNow API key for the given store.
-     *
-     * @param int $storeId
-     * @return string
-     */
     private function getApiKey(int $storeId): string
     {
         $raw = $this->scopeConfig->getValue(
