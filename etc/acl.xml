@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Panth_IndexNow — ACL resource declaration.
+ * Panth_IndexNow - ACL resource declaration.
  *
  * Declares Panth_IndexNow::config as a child of Panth_Core::panth_extensions
  * so the admin User Roles permission tree can surface it, and so the
@@ -9,7 +9,7 @@
  * actually resolves to a real permission node instead of a phantom one.
  *
  * Without this file, Magento accepts the system.xml reference but never
- * registers the resource — permissions granted to it via User Roles
+ * registers the resource - permissions granted to it via User Roles
  * silently have no effect because there's no node to match against.
  */
 -->

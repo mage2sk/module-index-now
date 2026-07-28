@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Panth_IndexNow — frontend route.
+ * Panth_IndexNow - frontend route.
  *
  * Owns its own frontName `panth_indexnow` so the module never shares a
  * route registration with another module. Sharing a frontName works in
  * Magento (the router merges modules under the same <route id>) but
- * creates coupling — controller resolution order under a shared route
+ * creates coupling - controller resolution order under a shared route
  * depends on module sort order, which is fragile for a plug-and-play
  * extension. Using a unique frontName keeps the module self-contained.
  *

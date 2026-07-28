@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!--
 /**
- * Panth IndexNow — Module declaration.
+ * Panth IndexNow - Module declaration.
  *
  * Notifies Bing, Yandex, and other IndexNow-participating search engines
  * whenever a product, category, or CMS page is saved. Exposes the key
