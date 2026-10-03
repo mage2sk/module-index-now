@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <panth_index_now>
+            <indexnow>
+                <enabled>0</enabled>
+                <api_key/>
+                <submit_deletions>1</submit_deletions>
+                <submission_mode>request</submission_mode>
+            </indexnow>
+        </panth_index_now>
+    </default>
+</config>
