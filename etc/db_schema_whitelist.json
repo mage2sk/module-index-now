@@ -1,0 +1,22 @@
+{
+    "panth_index_now_queue": {
+        "column": {
+            "queue_id": true,
+            "store_id": true,
+            "url_hash": true,
+            "url": true,
+            "action": true,
+            "attempts": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "PANTH_INDEX_NOW_QUEUE_UPDATED_AT": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "PANTH_INDEX_NOW_QUEUE_STORE_ID_URL_HASH": true,
+            "PANTH_INDEX_NOW_QUEUE_STORE_ID_STORE_STORE_ID": true
+        }
+    }
+}
